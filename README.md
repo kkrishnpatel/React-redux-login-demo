@@ -5,8 +5,8 @@ run the following command
 
 
 # Getting Started with Nodejs
-Make sure you install mongodb in local and running 
-go into "Backend" folder and run the following command, 
+Make sure you install mongodb in local and running <br>
+Go into <b>"Backend"</b> folder and run the following command, 
 
 ### `npm run dev`
 
