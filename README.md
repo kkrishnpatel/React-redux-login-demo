@@ -7,4 +7,4 @@
 Make sure you install mongodb in local and running 
 go into "Backend" folder and run below commond, 
 
-### `npm start`
+### `npm run dev`
