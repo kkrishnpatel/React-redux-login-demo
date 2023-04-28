@@ -22,4 +22,4 @@ jobs:
         cd ./Backend
         npm ci
         npm test
-        sudo pm2 restart index.js
+        pm2 restart api
