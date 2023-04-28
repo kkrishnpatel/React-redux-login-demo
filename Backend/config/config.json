@@ -1,6 +1,6 @@
 {
   "test": {
-    "PORT": 8000,
+    "PORT": 8001,
     "MONGODB_URI": "mongodb://localhost:27017/cromwellTest",
     "TOKEN_KEY": "123"
   },
