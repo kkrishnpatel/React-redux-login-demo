@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const config = process.env;
 
 const verifyToken = (req, res, next) => {
-  console.log('user verified new update request')
   const token =
     req.body.token || req.query.token || req.params.token || req.headers["auth"];
   if (!token) {
@@ -15,6 +14,7 @@ const verifyToken = (req, res, next) => {
   } catch (err) {
     return res.status(401).send({ message: "Invalid Token" });
   }
+  console.log('user verified successfully')
   return next();
 };
 
