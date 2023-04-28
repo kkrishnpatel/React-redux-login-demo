@@ -21,7 +21,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd Backend
-    - run: npm ci
-    - run: npm test
-    - run: sudo pm2 restart index.js
+    - working-directory: ./Backend
+    - run: |
+          npm ci
+          npm test
+          sudo pm2 restart index.js
