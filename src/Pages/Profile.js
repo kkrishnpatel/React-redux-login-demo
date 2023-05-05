@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
-import UserService from "../redux/services/user.service";
 import { Alert, Avatar, Box, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
-
+import { getUser } from "../Redux/services/user.service";
 
 export const Profile = () => {
     const [userData, setUserData] = useState({ name: '', email: '' });
     const [errorMessages, setErrorMessages] = useState("");
     const navigate = useNavigate();
     useEffect(() => {
-        UserService.getUser()
+        getUser()
             .then((response) => {
-                console.log(response);
                 setUserData(response.data);
                 setErrorMessages('');
             })
             .catch((error) => {
                 if (error.response && error.response.status === 401) {
-                    navigate("/profile");
+                    navigate("/logout");
                 } else {
                     setErrorMessages(error.response.data.message);
                 }
             });
-    }, []);
+    }, [navigate]);
     const cardData = () => {
         return (
             <>

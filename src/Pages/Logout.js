@@ -1,12 +1,11 @@
-import { logout } from "../redux/actions/auth";
+import { logout } from "../Redux/reducers/authSlice";
 import { useDispatch } from "react-redux";
-import { clearMessage } from "../redux/actions/message";
 import { useEffect } from "react";
 
 export const Logout = () => {
     const dispatch = useDispatch();
     useEffect(() => {
+        localStorage.removeItem("token");
         dispatch(logout())
-        dispatch(clearMessage())
-    },[dispatch])
+    }, [dispatch])
 }

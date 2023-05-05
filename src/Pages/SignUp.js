@@ -3,18 +3,15 @@ import { Alert, Box, Button, Typography } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login, register } from "../redux/actions/auth";
 import LoadingButton from '@mui/lab/LoadingButton';
-import { clearMessage } from "../redux/actions/message";
+import { clearMessage, loginApi, register } from "../Redux/reducers/authSlice";
 
 export const SignUp = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { isLoggedIn } = useSelector(state => state.auth);
-    const { message } = useSelector(state => state.message);
-
+    const { isLoggedIn, message } = useSelector(state => state.auth);
     const [isSignup, setIsSignUp] = useState(false);
     const [inputs, setInputs] = useState({
         name: "",
@@ -24,13 +21,14 @@ export const SignUp = () => {
     });
 
     const [loading, setLoading] = useState(false);
-    const re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     let ref1 = useRef("null");
     useEffect(() => {
         if (isLoggedIn) {
             navigate("/profile");
+        } else {
+            navigate(isSignup ? "/register" : "/login")
         }
-    }, [isLoggedIn, navigate]);
+    }, [isSignup, isLoggedIn, navigate]);
     useEffect(() => {
         setIsSignUp(location.pathname !== "/login")
     }, [location.pathname]);
@@ -49,9 +47,7 @@ export const SignUp = () => {
         }
     }, [inputs.password, isSignup, inputs.confirmPassword]);
 
-    useEffect(() => {
-        navigate(isSignup ? "/register" : "/login")
-    }, [isSignup, navigate]);
+
 
     const handleChange = (e) => {
         const { name, value } = e["target"];
@@ -75,10 +71,8 @@ export const SignUp = () => {
     const handelSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        const { email, password } = inputs;
         if (isSignup) {
-            const { name } = inputs;
-            dispatch(register(name, email, password))
+            dispatch(register(inputs))
                 .then(() => {
                     navigate("/profile");
                 })
@@ -87,7 +81,7 @@ export const SignUp = () => {
                 });
         } else {
             // Login API call
-            dispatch(login(email, password))
+            dispatch(loginApi(inputs))
                 .then(() => {
                     navigate("/profile");
                 })
@@ -148,6 +142,7 @@ export const SignUp = () => {
                         label="Password"
                         margin={"normal"}
                         type={"password"}
+                        autoComplete="on"
                         variant="outlined"
                         placeholder="Password"
                         name="password"
