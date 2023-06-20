@@ -1,7 +1,7 @@
 import { Container, Typography } from "@mui/material";
 import React, { Fragment } from "react";
 
-export const Home = () => {
+ const Home = () => {
 
     return (
         <Fragment>
@@ -21,5 +21,5 @@ export const Home = () => {
             </Container>
         </Fragment>
     )
-
 }
+export default Home;

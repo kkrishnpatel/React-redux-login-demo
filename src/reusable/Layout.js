@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const pages = [
     { "link": "home", "title": "Home" },
@@ -24,7 +25,7 @@ export const Layout = (props) => {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleCloseNavMenu = (e) => {
+    const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
@@ -169,3 +170,7 @@ export const Layout = (props) => {
     )
 
 }
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
+  };

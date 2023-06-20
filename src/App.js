@@ -1,16 +1,21 @@
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import React, { Suspense } from 'react';
+
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
+const Home = React.lazy(() => import('./pages/Home'));
+const Profile = React.lazy(() => import('./pages/Profile'));
+const Logout = React.lazy(() => import('./pages/Logout'));
 
-import { Home } from './Pages/Home';
-import { Profile } from './Pages/Profile';
-import { SignUp } from './Pages/SignUp';
-import { PrivateRoutes } from './utils/PrivateRoutes';
-import { Layout } from './Reusable/Layout';
-import { Logout } from './Pages/Logout';
+import { SignUp } from './pages/SignUp';
+import { PrivateRoutes } from './utils/privateRoutes';
+import { Layout } from './reusable/Layout';
 
 import './App.css';
 import history from './utils/history';
+
+
+
 
 const App = () => {
   return (

@@ -31,8 +31,8 @@ export const register = createAsyncThunk(
             const response = await methods.register(userData)
             return response.data;
 
-        } catch (e) {
-            throw e
+        } catch (error) {
+            return rejectWithValue(error.response.data)
         }
     });
 

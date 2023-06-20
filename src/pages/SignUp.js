@@ -4,7 +4,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingButton from '@mui/lab/LoadingButton';
-import { clearMessage, loginApi, register } from "../Redux/reducers/authSlice";
+import { clearMessage, loginApi, register } from "../redux/reducers/authSlice";
 
 export const SignUp = () => {
 
@@ -85,7 +85,7 @@ export const SignUp = () => {
                 .then(() => {
                     navigate("/profile");
                 })
-                .catch((e) => {
+                .catch(() => {
                     setLoading(false);
                 });
         }

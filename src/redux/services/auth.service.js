@@ -1,4 +1,4 @@
-import http from "./Axios/http-common";
+import http from "./axios/http-common";
 
 const register = ({ name, email, password }) => {
   return http.post("register", {

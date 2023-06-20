@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Alert, Avatar, Box, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
-import { getUser } from "../Redux/services/user.service";
+import { getUser } from "../redux/services/user.service";
 
-export const Profile = () => {
+const  Profile = () => {
     const [userData, setUserData] = useState({ name: '', email: '' });
     const [errorMessages, setErrorMessages] = useState("");
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ export const Profile = () => {
                     {userData?.email}
                 </Typography>
                 <Typography variant="body2" marginTop={5}>
-                    Don't walk behind me; I may not lead. Don't walk in front of me; I may not follow. Just walk beside me and be my friend.
+                    Don&apos;t walk behind me; I may not lead. Don&apos;t walk in front of me; I may not follow. Just walk beside me and be my friend.
                 </Typography>
             </>
         )
@@ -60,3 +60,4 @@ export const Profile = () => {
         </Box >
     )
 }
+export default Profile;
